@@ -1,7 +1,10 @@
 #type:ignore
 
 
-# start 
+#start 
+# import selenium 
+# from selenium import webdriver
+# from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 # driver = webdriver.Remote(
@@ -11,9 +14,6 @@
 
 # driver.get("https://python.org")
 # print(driver.find_element_by_tag_name('body').text)
-
-
-
 
 # end
 
@@ -28,39 +28,34 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+import time
 
 import selenium 
-import os
 from selenium import webdriver
-import time
+
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-print(DesiredCapabilities.CHROME)
 
-sleep(5)
+from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+
+
+time.sleep(10)
+
+print("till here")
+
+
 driver = webdriver.Remote(
-    'http://selenium:4444/wd/hub',
-    desired_capabilities = DesiredCapabilities.CHROME
-)
+    command_executor='http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME
+    )
+
+print("till here 2")
 
 search_url='https://careers.microsoft.com/students/us/en/search-results'
 driver.get(search_url)
+print("till here 4")
+print(driver.find_element_by_tag_name('body').text)
 
-
+print("till here 3")
 
 
 def openOptions(driver):
