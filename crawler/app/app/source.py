@@ -24,10 +24,6 @@
 
 
 
-
-
-
-
 import time
 
 import selenium 
@@ -40,23 +36,29 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 
 
 time.sleep(10)
-
+'============================================================================================================================================START'
 print("till here")
+'==============================================================================================================================================END'
 
 
 driver = webdriver.Remote(
     command_executor='http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME
     )
 
+'============================================================================================================================================START'
 print("till here 2")
+'==============================================================================================================================================END'
 
 search_url='https://careers.microsoft.com/students/us/en/search-results'
 driver.get(search_url)
+'============================================================================================================================================START'
+
 print("till here 4")
 print(driver.find_element_by_tag_name('body').text)
 
 print("till here 3")
 
+'==============================================================================================================================================END'
 
 def openOptions(driver):
     try:
@@ -77,7 +79,7 @@ def setCountry(driver):
     try:
        
         driver.find_element_by_xpath("//label[input/@data-ph-at-text='India']").click()
-      
+       
         return True
     except:
         WebDriverWait(driver, timeout=10).until(dropDown)
@@ -89,9 +91,16 @@ def checkContent(driver):
 
     text = driver.find_elements_by_xpath("//ul[@data-ph-at-id='jobs-list']/li")
     file = open('content.txt', 'w', encoding='utf-8')
+#============================================================================================================================================START'
+    print("check content start")
+#==============================================================================================================================================END'
    
     for items in text:
-  
+        
+#============================================================================================================================================START'
+        print("loop start")
+#==============================================================================================================================================END'
+
         header = items.find_element_by_css_selector("h2 a")
        
       
@@ -104,9 +113,16 @@ def checkContent(driver):
         file.write(title+'\n')
         file.write(link+'\n')
 
-        driver2 = webdriver.Chrome(ChromeDriverManager().install()) 
+        driver2 = webdriver.Remote(
+         command_executor='http://selenium:4444/wd/hub',
+         desired_capabilities=DesiredCapabilities.CHROME
+        )
         driver2.get(link)
 
+#============================================================================================================================================START'
+        print('================')
+        print(title+'\n'+link+'\n')
+#==============================================================================================================================================END'
         time.sleep(5)
 
         info = driver2.find_elements_by_xpath("//div[@class='job-description']/div[@class='jd-info']")
@@ -130,6 +146,7 @@ def checkContent(driver):
                 file.write(i)
             file.write('\n\n')
         except Exception as e:
+            print("error")
             print(e)
             return True
         print("writing into file.....")
