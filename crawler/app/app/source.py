@@ -22,8 +22,6 @@
 
 
 
-
-
 import time
 import sys
 import selenium 
@@ -51,7 +49,7 @@ print("till here 2")
 
 search_url='https://careers.microsoft.com/students/us/en/search-results'
 print("wow")
-# search_url = sys.argv[0]
+print("============================"+sys.argv[1]+"===========================")
 print(search_url)
 driver.get(search_url)
 '============================================================================================================================================START'
@@ -93,7 +91,7 @@ def checkContent(driver):
     
 
     text = driver.find_elements_by_xpath("//ul[@data-ph-at-id='jobs-list']/li")
-    file = open('content.txt', 'w', encoding='utf-8')
+    file = open('./api_outlet/content.txt', 'w', encoding='utf-8')
 #============================================================================================================================================START'
     print("check content start")
 #==============================================================================================================================================END'

@@ -32,9 +32,8 @@ services:
             context: .
         volumes: 
             - ./app:/app
-
-        command:
-            #sh -c "python3 ./app/source.py"
+        # command:
+        #     sh -c "python3 ./app/source.py this"
         depends_on: 
             - selenium
             - api_outlet

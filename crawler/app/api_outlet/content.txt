@@ -1,0 +1,47 @@
+=====================
+Research Intern
+https://careers.microsoft.com/students/us/en/job/931311/Research-Intern
+Responsibilities
+
+During the internship, students are paired with mentors and expected to collaborate with other interns and researchers, present findings, and contribute to the vibrant life of the community.
+MSR India conducts research in a wide range of areas and Internships are available in all of them.
+In the application process, we’ll try to find the opportunity that best aligns with your interests.
+Internships are offered year round, though a majority begin in the summer.
+All internships are paid. And, we’ll help with visa applications where needed.
+
+Qualifications
+
+Candidates must be enroled in a university as part of either a doctoral, masters, or undergraduate program (or must be a recent graduate from such a program). Please include your resume and upto three letters of recommendation while applying for this job.
+ Each applicant should request for a letter of recommendation by giving the name and email ID of the referee in the tool. The request will then be routed to the referee to upload a letter of recommendation. Please pay attention to the five areas of research and choose your interest while answering to the screening questions.
+ Microsoft is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to age, ancestry, color, family or medical care leave, gender identity or expression, genetic information, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran status, race, religion, sex (including pregnancy), sexual orientation, or any other characteristic protected by applicable laws, regulations and ordinances. If you need assistance and/or a reasonable accommodation due to a disability during the application or the recruiting process, please send a request via the Accommodation request form.
+ Benefits/perks listed below may vary depending on the nature of your employment with Microsoft and the country where you work.
+
+=====================
+Post Doc Researcher
+https://careers.microsoft.com/students/us/en/job/436026/Post-Doc-Researcher
+Responsibilities
+
+Post-doctoral researchers must demonstrate innovative work in their field as evidenced by high quality publications, and a track record for innovation. Candidates must also be able to collaborate effectively with other researchers and product development teams. Postdoctoral researchers spend 1 to 2 years at MSR India. During their tenure, each postdoctoral researcher will receive ongoing guidance and mentoring from an experienced researcher at Microsoft Research.
+Our current areas of work range over Algorithms, Machine Learning, Systems (distributed systems, networking, programming languages, security and privacy, cryptography), Human Computer Interaction, and applications of technology to solve societal problems (such as education, health, affordable access to technology). Projects in the lab are inter-disciplinary and span across these research areas
+
+Qualifications
+
+Candidates should have a Ph.D. in Computer Science, Computer Engineering, Electrical Engineering or related fields. Most applicants are recent PhD graduates. Applicants should have  high quality publications, and a good record of innovation and research. Candidates must also be able to collaborate effectively with other researchers and product development teams.
+ Interested candidates must apply  with their application materials (including CV, Research Statement, and  contact information of at least three references who can write letters of recommendation). We also encourage applicants to send email to a member of our research staff (whose interest most closely matches theirs) about their application. Our staff webpages can be accessed from Microsoft Research India by browsing through our research interests or by accessing the people page. Applications will be reviewed on an ongoing basis.
+ Located in Bengaluru, Microsoft Research India is one of the most attractive places to pursue a research career in computer science and related disciplines. The lab has a vibrant research environment of the highest standard, and a welcoming social life of diversity and international culture. Visit Microsoft Research India for more information on us. 
+ Microsoft is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to age, ancestry, color, family or medical care leave, gender identity or expression, genetic information, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran status, race, religion, sex (including pregnancy), sexual orientation, or any other characteristic protected by applicable laws, regulations and ordinances.
+ Benefits/perks listed below may vary depending on the nature of your employment with Microsoft and the country where you work.
+
+=====================
+SCAI Centre Fellow
+https://careers.microsoft.com/students/us/en/job/629816/SCAI-Centre-Fellow
+Responsibilities
+
+The AI Centre Postdoctoral Fellow position at Microsoft Research India offers an opportunity for selected candidates to have a hands-on experience in understanding societal problems, identifying feasible solutions, and dealing with challenges in deploying such solutions. Fellows are expected to contribute to various aspects of a project lifecycle spanning ideation, implementation, evaluation, and deployment. Candidates must also be able to collaborate effectively with other researchers, product development teams and external collaborators.
+Postdoctoral Fellows spend 1 to 2 years at MSR India. During their tenure, each postdoctoral Fellow will receive ongoing guidance and mentoring from an experienced researcher at Microsoft Research.
+
+Qualifications
+
+Microsoft is an equal opportunity employer. All qualified applicants will receive consideration for employment without regard to age, ancestry, color, family or medical care leave, gender identity or expression, genetic information, marital status, medical condition, national origin, physical or mental disability, political affiliation, protected veteran status, race, religion, sex (including pregnancy), sexual orientation, or any other characteristic protected by applicable laws, regulations and ordinances. 
+ Benefits/perks listed below may vary depending on the nature of your employment with Microsoft and the country where you work.
+
