@@ -25,7 +25,7 @@
 
 
 import time
-
+import sys
 import selenium 
 from selenium import webdriver
 
@@ -50,6 +50,9 @@ print("till here 2")
 '==============================================================================================================================================END'
 
 search_url='https://careers.microsoft.com/students/us/en/search-results'
+print("wow")
+# search_url = sys.argv[0]
+print(search_url)
 driver.get(search_url)
 '============================================================================================================================================START'
 

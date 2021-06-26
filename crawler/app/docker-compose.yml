@@ -1,6 +1,20 @@
 version: '3.3'
 
 services: 
+
+    api_outlet:
+        build:
+            context: .
+        volumes:
+            - ./api_outlet:/api_outlet
+            - /api_outlet/node_modules
+        ports:
+            - 5000:8000
+
+        command: 
+            sh -c "node api_outlet/server.js"
+
+
     selenium:
         image: selenium/standalone-chrome
         ports:
@@ -8,13 +22,13 @@ services:
         restart: always
 
 
+
     app:
         build: 
             context: .
         volumes: 
-         - ./app:/app
-        command: sh -c "python3 source.py"
+            - ./app:/app
         depends_on: 
-         - selenium
-
+            - selenium
+            - api_outlet
 
