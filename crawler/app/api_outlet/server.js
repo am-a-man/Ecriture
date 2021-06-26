@@ -15,7 +15,7 @@ app.get("/working/:link",(request, response)=>{
     var link = (request.params.link);
     console.log(link);
 try {
-    var process = spawn("python3", ["source.py"]);
+    var process = spawn("python3", ["./app/source.py"]);
 
     process.stdout.on('data', function(data) {
         response.send(data.toString())});
