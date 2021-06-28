@@ -20,7 +20,7 @@
 
 
 
-
+import json
 
 import time
 import sys
@@ -31,35 +31,33 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
+print("--------------------------------------------------------")
 
 time.sleep(10)
-'============================================================================================================================================START'
-print("till here")
-'==============================================================================================================================================END'
-
 
 driver = webdriver.Remote(
     command_executor='http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME
     )
 
-'============================================================================================================================================START'
-print("till here 2")
-'==============================================================================================================================================END'
+
 
 search_url='https://careers.microsoft.com/students/us/en/search-results'
-print("wow")
-print("============================"+sys.argv[1]+"===========================")
+
+try:
+    print("============================"+sys.argv[1]+"===========================")
+except Exception as e:
+    None
+
+
 print(search_url)
 driver.get(search_url)
-'============================================================================================================================================START'
+name = "microsoft"
 
-print("till here 4")
-print(driver.find_element_by_tag_name('body').text)
+# opening json and retreiving data
 
-print("till here 3")
+details = {}
+details[name] = {"url":search_url, "jobs":{}}
 
-'==============================================================================================================================================END'
 
 def openOptions(driver):
     try:
@@ -91,70 +89,66 @@ def checkContent(driver):
     
 
     text = driver.find_elements_by_xpath("//ul[@data-ph-at-id='jobs-list']/li")
-    file = open('./api_outlet/content.txt', 'w', encoding='utf-8')
-#============================================================================================================================================START'
-    print("check content start")
-#==============================================================================================================================================END'
-   
+
+    
+
     for items in text:
-        
-#============================================================================================================================================START'
-        print("loop start")
-#==============================================================================================================================================END'
-
         header = items.find_element_by_css_selector("h2 a")
-       
-      
-   
-
         title = header.find_element_by_tag_name('span').text
         link = header.get_attribute('href')
 
-        file.write('=====================\n')
-        file.write(title+'\n')
-        file.write(link+'\n')
-
-        driver2 = webdriver.Remote(
-         command_executor='http://selenium:4444/wd/hub',
-         desired_capabilities=DesiredCapabilities.CHROME
-        )
-        driver2.get(link)
-
-#============================================================================================================================================START'
-        print('================')
-        print(title+'\n'+link+'\n')
-#==============================================================================================================================================END'
-        time.sleep(5)
-
-        info = driver2.find_elements_by_xpath("//div[@class='job-description']/div[@class='jd-info']")
-
-        responsibility = info[0]
-        qualification = info[1]
         try:
-            for i in responsibility.find_element_by_tag_name("h2").text:
-                file.write(i)
-            file.write('\n\n')
-            
-            for i in responsibility.find_element_by_tag_name("p").text:
-                file.write(i)
-            file.write('\n\n')
+            #file.write(title+'\n')
+           
+            titleCache = title
+            i = 1
+            while(title in details[name]["jobs"].keys())
+                title = titleCache + ' ' +str(i)
+                i+=1
 
-            for i in qualification.find_element_by_tag_name("h2").text:
-                file.write(i)
-            file.write('\n\n')
 
-            for i in qualification.find_element_by_tag_name("p").text:
-                file.write(i)
-            file.write('\n\n')
+            details[name]["jobs"][title]={"url":link}
+            #file.write(link+'\n')
+
+            driver2 = webdriver.Remote(
+            command_executor='http://selenium:4444/wd/hub',
+            desired_capabilities=DesiredCapabilities.CHROME
+            )
+            driver2.get(link)
+
+
+            time.sleep(3)
+
+            info = driver2.find_elements_by_xpath("//div[@class='job-description']/div[@class='jd-info']")
+
+            responsibility = info[0].find_element_by_tag_name("p").text
+            qualification = info[1].find_element_by_tag_name("p").text
+            print(f"=========================================={title}==========================")
+
+            responsibilityText = ''
+            qualificationText = ''    
+            for i in responsibility:
+                responsibilityText+=i
+            for i in qualification:
+                qualificationText+=i
+            details[name]["jobs"][title]["responsibility"] = responsibilityText
+            details[name]["jobs"][title]["qualifications"] = qualificationText
+                
         except Exception as e:
             print("error")
             print(e)
+            driver2.quit()
             return True
         print("writing into file.....")
         driver2.quit()
-
-
-    file.close()
+    try:
+        print(details)
+        jsondata = json.dumps(details, indent=4)
+        with open("./api_outlet/content.json", 'w', encoding="utf-8") as outfile:
+            outfile.write(jsondata)
+        print("done")
+    except Exception as e:
+        print(e)
     return True
 
 

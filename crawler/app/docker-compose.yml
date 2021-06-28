@@ -27,14 +27,16 @@ services:
 
 
 
-    app:
-        build: 
-            context: .
-        volumes: 
-            - ./app:/app
-        # command:
-        #     sh -c "python3 ./app/source.py this"
-        depends_on: 
-            - selenium
-            - api_outlet
+    # app:
+    #     build: 
+    #         context: .
+    #     volumes: 
+    #         - ./app:/app
+    #     environment: 
+    #         - PYTHONUNBUFFERED:1
+    #     command:
+    #         sh -c "python3 ./app/source.py this"
+    #     depends_on: 
+    #         - selenium
+    #         - api_outlet
 
