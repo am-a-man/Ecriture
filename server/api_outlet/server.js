@@ -14,11 +14,23 @@ app.get("/loaddata", async (request, response)=>{
     console.log("get request: loadData");
     var exec = require("child_process").execSync;
 
-    var process = exec("python3 ./app/ms_bot.py");
+    try {
+        var process = exec("python3 ./app/main.py");
+        console.log(process.toString());
+        
+    } catch (error) {
+        fs.writeFile("./api_outlet/logs.txt", error);
+    }
     
     // console.log(process.toString());
     file = fs.readFileSync("./api_outlet/content.json");
-    fs.writeFile("./api_outlet/logs", process.toString())
+    
+    try{
+    fs.writeFile("./api_outlet/logs.txt", process.toString());
+    } catch(error){
+        console.log(error);
+    }
+   
     try {
         response.send(JSON.parse(file));
     } catch (error) {
