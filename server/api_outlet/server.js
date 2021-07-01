@@ -12,25 +12,16 @@ app.listen(8000, ()=>{
 
 app.get("/loaddata", async (request, response)=>{
     console.log("get request: loadData");
-    var exec = require("child_process").execSync;
+    var spawn = require("child_process").spawn;
 
-    try {
-        var process = exec("python3 ./app/main.py");
-        console.log(process.toString());
-        
-    } catch (error) {
-        fs.writeFile("./api_outlet/logs.txt", error);
-    }
-    
-    // console.log(process.toString());
+    var process = spawn("python3", ["./app/main.py"], {stdio:"inherit"});
+
+    process.stdout.on('data', data=>{
+        console.log(data.toString());
+    });
+
+    process.on('exit',(code)=>{
     file = fs.readFileSync("./api_outlet/content.json");
-    
-    try{
-    fs.writeFile("./api_outlet/logs.txt", process.toString());
-    } catch(error){
-        console.log(error);
-    }
-   
     try {
         response.send(JSON.parse(file));
     } catch (error) {
@@ -38,6 +29,7 @@ app.get("/loaddata", async (request, response)=>{
             "status":String(error)
         }));
     }
+    });
 
 });
 
