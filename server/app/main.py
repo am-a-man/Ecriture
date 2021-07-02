@@ -26,7 +26,7 @@ for i in scripts:
     write(f"app/calls/{i}", "run.py")
     print(colored(f"[{k}/{len(scripts)}]: starting {i}", 0, 255 , 0),flush=True)
     status = os.system("python3 run.py")
-    if status is not 0:
+    if status != 0:
         print(colored(f"[{k}/{len(scripts)}] check: {i}, it's returning errors, also add error handling"))
     else:
         print(colored(f"[{k}/{len(scripts)}] check: {i} succeded, however check if it's returning the desired data", 0,255,0))

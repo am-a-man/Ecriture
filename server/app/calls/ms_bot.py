@@ -55,7 +55,9 @@ name = "microsoft"
 
 # opening json and retreiving data
 
-details = {}
+
+with open("./api_outlet/content.json","r",encoding='utf-8') as jsonData:
+    details = json.load(jsonData)
 details[name] = {"url":search_url, "jobs":{}}
 
 

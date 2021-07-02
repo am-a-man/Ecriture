@@ -16,11 +16,24 @@ app.get("/loaddata", async (request, response)=>{
 
     var process = spawn("python3", ["./app/main.py"], {stdio:"inherit"});
 
-    process.stdout.on('data', data=>{
-        console.log(data.toString());
-    });
+    var i =0;
+    // process.stdout.on('data', data=>{
+    //     console.log(data.toString());
+    //     console.log(`->>>${i}`);
+    //     i++;
+    // });
 
     process.on('exit',(code)=>{
+    // file = fs.readFileSync("./api_outlet/content.json");
+    // try {
+    //     response.send(JSON.parse(file));
+    // } catch (error) {
+    //     response.send(JSON.stringify({
+    //         "status":String(error)
+    //     }));
+    // }
+    // });
+    console.log(`exited: ${code}`);
     file = fs.readFileSync("./api_outlet/content.json");
     try {
         response.send(JSON.parse(file));
@@ -30,7 +43,6 @@ app.get("/loaddata", async (request, response)=>{
         }));
     }
     });
-
 });
 
 
