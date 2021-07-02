@@ -20,10 +20,13 @@
 
 
 
-import json
 
+from app.common.write import fileWrite
+import json
+# import common.write
 import time
 import sys
+import os
 import selenium 
 from selenium import webdriver
 
@@ -34,6 +37,8 @@ from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 print("--------------------------------------------------------")
 
 time.sleep(10)
+
+
 
 driver = webdriver.Remote(
     command_executor='http://selenium:4444/wd/hub', desired_capabilities=DesiredCapabilities.CHROME
@@ -55,9 +60,9 @@ name = "microsoft"
 
 # opening json and retreiving data
 
-
-with open("./api_outlet/content.json","r",encoding='utf-8') as jsonData:
-    details = json.load(jsonData)
+details = {}
+# with open("./api_outlet/content.json","r",encoding='utf-8') as jsonData:
+#     details = json.load(jsonData)
 details[name] = {"url":search_url, "jobs":{}}
 
 
@@ -145,9 +150,11 @@ def checkContent(driver):
         driver2.quit()
     try:
         print(details)
-        jsondata = json.dumps(details, indent=4)
-        with open("./api_outlet/content.json", 'w', encoding="utf-8") as outfile:
-            outfile.write(jsondata)
+        temp = fileWrite()
+        temp.write(details)
+        # jsondata = json.dumps(details, indent=4)
+        # with open("./api_outlet/content.json", 'w', encoding="utf-8") as outfile:
+        #     outfile.write(jsondata)
         print("done")
     except Exception as e:
         print(e)
