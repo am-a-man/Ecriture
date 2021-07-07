@@ -8,7 +8,7 @@ RUN pip3 list
 
 RUN mkdir /app
 COPY ./app /app
-COPY ./app/calls /app/calls
+
 #WORKDIR /app
 
 
