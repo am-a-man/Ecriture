@@ -2,14 +2,18 @@ version: '3.3'
 
 services: 
 
-
-    
     selenium:
         image: selenium/standalone-chrome
+        # image: selenium/hub
+        
         ports:
         - 4444:4444
         restart: always
-
+        # environment:
+        #     - SE_OPTS=-debug
+        #     - GRID_MAX_SESSION=20
+        #     - GRID_BROWSER_TIMEOUT=10000
+        #     - GRID_TIMEOUT=10000
 
     api_outlet:
         build:
@@ -24,9 +28,31 @@ services:
 
         command: 
             sh -c "node api_outlet/server.js"
+        
+    # chrome:
+    #     image: selenium/node-chrome
+    #     depends_on:
+    #         - selenium_hub
+    #     environment: 
+    #         - NODE_MAX_SESSION=20
+    #         - NODE_MAX_INSTANCES=20
+    #         - HUB_HOST=selenium_hub
+    #         - HUB_PORT=4444
 
-
-
+        # capabilities: [
+        #     {
+        #         browserName: 'chrome',
+        #         'goog:chromeOptions': {
+        #         args: [
+        #             '--no-sandbox',
+        #             '--disable-dev-shm-usage',
+        #             '--disable-gpu',
+        #             '--window-size=1920,1080'
+        #         ]
+        #         }
+        #     }
+        #     ...
+        #     ]
 
 
     # app:

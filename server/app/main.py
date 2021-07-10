@@ -1,36 +1,93 @@
 import os
-
+import sys
+path = sys.path
+path.append("/app/")
+from common.common import colored
+from multiprocessing import Lock, Process
 scripts = os.listdir("/app/calls")
 
 
-def colored(text, r=255, g=0, b=0):
-    return "\033[38;2;{};{};{}m{} \033[38;2;255;255;255m".format(r, g, b, text)
 
 
-def write(base, target):
-    with open(target, 'w', encoding="utf-8") as targetFile:
-        targetFile.write('''
-import sys
+
+
+
+def createRunPy():
+    with open("test.py", "w", encoding="utf-8") as runPy:
+        runPy.write('''
+from multiprocessing import Lock
+from multiprocessing.context import Process
+
 import os
-sys.stdout = open(os.devnull, "w")        
+
+from multiprocessing import Lock, Process, Pool
+processLock = Lock()
+import sys
+path = sys.path
+path.append("/app/calls/")
+path.append("/app/common/")
 ''')
-        with open(base , 'r', encoding="utf-8") as baseFile:
-            for i in baseFile:
-                targetFile.write(i)
-            baseFile.close()
-        targetFile.close()
+        scriptList = os.listdir("/app/calls")
+        for i in scriptList:
+            if i != "__pycache__":
+                with open("./app/calls/"+i, 'r',encoding = 'utf-8') as scripts:
+                    runPy.write(f"def scrapeBot_{i.split('.')[0]}(processLock):\n")
+                    for j in scripts.readlines():
+                        runPy.write("   "+j+"\n")
+                    scripts.close()
+        
+        runPy.write('''
+
+  
+
+def main():
+    
+    scriptList = os.listdir("./app/calls")
+    
+    processes = []
+
+    for i in scriptList:
+        if i != "__pycache__":
+            processes.append(Process(target = eval("scrapeBot_"+i.split('.')[0]), args={processLock} ))
+
+    # with Pool(len(scriptList), initializer=init, initargs=(Lock(),)) as p:
+    #     p.map(startProcess, scriptList)
+    #     p.close()
+    #     p.join()
+
+    for i in processes:
+        i.start()
+
+    for i in processes:
+        i.join()
+        
+
+if __name__ == "__main__" :
+
+    main()
+    exit(0)
+
+        ''')
 
 
-k = 1
-for i in scripts:
-    write(f"app/calls/{i}", "run.py")
-    print(colored(f"[{k}/{len(scripts)}]: starting {i}", 0, 255 , 0),flush=True)
-    status = os.system("python3 run.py")
-    if status != 0:
-        print(colored(f"[{k}/{len(scripts)}] check: {i}, it's returning errors, also add error handling"))
-    else:
-        print(colored(f"[{k}/{len(scripts)}] check: {i} succeded, however check if it's returning the desired data", 0,255,0))
-    os.remove("run.py")
-    k+=1
+        runPy.close()
+        
 
+
+
+
+
+
+if __name__ == "__main__" :
+
+    createRunPy()
+    os.system("python3 test.py")
+    # os.remove("test.py")
+    with open("test.py","r",encoding="utf-8") as runPy:
+        j = 1
+        for i in runPy.readlines():
+
+            print(str(j)+" "+i)
+            j+=1
+    exit(0)
 
