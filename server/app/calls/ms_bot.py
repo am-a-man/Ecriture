@@ -92,7 +92,7 @@ def openOptions(driver):
 
 def dropDown(driver):
     try:
-        print("test3")
+ 
         driver.find_element_by_xpath("//button[@aria-label='Country/Region']").click()
         return True
     except:
@@ -100,7 +100,7 @@ def dropDown(driver):
 
 def setCountry(driver):
     try:
-        print("test2")
+   
         driver.find_element_by_xpath("//label[input/@data-ph-at-text='India']").click()
         return True
     except:
@@ -110,7 +110,7 @@ def setCountry(driver):
 
 
 def checkContent(driver, processLock):
-    print("test1")
+  
     text = driver.find_elements_by_xpath("//ul[@data-ph-at-id='jobs-list']/li")
   
     

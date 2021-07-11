@@ -75,19 +75,20 @@ if __name__ == "__main__" :
 
 
 
-
-
-
-if __name__ == "__main__" :
-
-    createRunPy()
-    os.system("python3 test.py")
-    # os.remove("test.py")
+def printTest():
     with open("test.py","r",encoding="utf-8") as runPy:
         j = 1
         for i in runPy.readlines():
 
             print(str(j)+" "+i)
             j+=1
+
+
+if __name__ == "__main__" :
+
+    createRunPy()
+    os.system("python3 test.py")
+    os.remove("test.py")
+    # printTest()
     exit(0)
 
