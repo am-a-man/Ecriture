@@ -1,22 +1,6 @@
 #type:ignore
 
 
-#start 
-# import selenium 
-# from selenium import webdriver
-# from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
-
-
-# driver = webdriver.Remote(
-#     'http://selenium:4444/wd/hub',
-#     desired_capabilities = DesiredCapabilities.CHROME
-# )
-
-# driver.get("https://python.org")
-# print(driver.find_element_by_tag_name('body').text)
-
-# end
-
 
 
 
@@ -25,7 +9,6 @@ from common import fileWrite
 from common import colored
 from common import CustomError
 import json
-# import common.write
 import time
 import sys
 import os
@@ -52,7 +35,6 @@ capabilities['goog:chromeOptions']= {
       ],
     }
 # capabilities["version"]= "v91.0.4472.124"
-
 
 
 # driver = webdriver.Chrome(ChromeDriverManager().install())
@@ -82,6 +64,9 @@ details = {}
 details[name] = {"url":search_url, "jobs":{}}
 
 
+
+
+
 def openOptions(driver):
     try:
         driver.find_element_by_xpath("//button[@aria-label='toggle refine search']").click()
@@ -90,6 +75,11 @@ def openOptions(driver):
         print("check openOptions")
         return True
 
+
+
+
+
+
 def dropDown(driver):
     try:
  
@@ -97,6 +87,10 @@ def dropDown(driver):
         return True
     except:
         WebDriverWait(driver, timeout = 10).until(openOptions)
+
+
+
+
 
 def setCountry(driver):
     try:
@@ -107,6 +101,10 @@ def setCountry(driver):
         
         WebDriverWait(driver, timeout=10).until(dropDown)
         setCountry(driver)
+
+
+
+
 
 
 def checkContent(driver, processLock):
@@ -121,7 +119,7 @@ def checkContent(driver, processLock):
         link = header.get_attribute('href')
 
         try:
-            #file.write(title+'\n')
+       
            
             titleCache = title
             i = 1
@@ -131,7 +129,7 @@ def checkContent(driver, processLock):
 
 
             details[name]["jobs"][title]={"url":link}
-            #file.write(link+'\n')
+          
             
             # driver2 = webdriver.Chrome(ChromeDriverManager().install())
             driver2 = webdriver.Remote(
@@ -166,11 +164,13 @@ def checkContent(driver, processLock):
             return True
         print("writing into file.....")
         driver2.quit()
-        print(details)
+
+
+
 
 
     try:
-        #global processLock
+
         # the script for writing into files
         if "processLock" not in locals() and "processLock" not in globals():
             processLock = None
@@ -178,10 +178,8 @@ def checkContent(driver, processLock):
         print(processLock)
         temp = fileWrite(processLock)
         temp.write(details)
-        # jsondata = json.dumps(details, indent=4)
-        # with open("./api_outlet/content.json", 'w', encoding="utf-8") as outfile:
-        #     outfile.write(jsondata)
-        print(colored("done"))    
+
+        print(colored("done", 0 , 255 , 0))    
     except Exception as e:
         print(e)
         exit(1)
