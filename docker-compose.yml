@@ -1,0 +1,41 @@
+version: '3.3'
+
+services: 
+
+    selenium:
+        image: selenium/standalone-chrome
+        ports:
+        - 4444:4444
+        restart: always
+
+    api_outlet:
+        build:
+            context: .
+        restart: 
+            always
+        volumes:
+            - ./server/api_outlet:/server/api_outlet
+            - /server/api_outlet/node_modules
+          
+        ports:
+            - 5000:8000
+
+        command: 
+            sh -c "node server/api_outlet/server.js"
+
+    # client:
+    #     build:
+    #         context: .
+    #     restart: 
+    #         always
+        
+    #     volumes:
+    #         - ./client/website:/client/website
+    #         - /client/node_modules
+        
+                
+    #     ports: 
+    #         - 3000:3000
+        
+    #     command:
+    #         sh -c "node client/client.js"

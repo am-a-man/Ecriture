@@ -34,7 +34,7 @@ app.get("/loaddata", async (request, response)=>{
     // }
     // });
     console.log(`exited: ${code}`);
-    file = fs.readFileSync("./api_outlet/content.json");
+    file = fs.readFileSync("./server/api_outlet/content.json");
     try {
         response.send(JSON.parse(file));
     } catch (error) {
@@ -50,7 +50,7 @@ app.get("/loaddata", async (request, response)=>{
 app.get("/data", (request, response)=>{
     console.log("get request: data");
 
-    file = fs.readFileSync("./api_outlet/content.json");
+    file = fs.readFileSync("./server/api_outlet/content.json");
     
     try {
         response.send(JSON.parse(file));

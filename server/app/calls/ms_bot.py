@@ -4,20 +4,22 @@
 
 
 
-
-from common import fileWrite
-from common import colored
-from common import CustomError
-import json
-import time
-import sys
 import os
+import sys
+path = sys.path
+path.append("../common/")
+from common.common import fileWrite
+from common.common import colored
+from common.common import CustomError
+import json
+
+import time
 import selenium 
 from selenium import webdriver
 from multiprocessing import Lock
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
-
+from webdriver_manager.chrome import ChromeDriverManager
 
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 print("--------------------------------------------------------")
@@ -31,15 +33,15 @@ capabilities['goog:chromeOptions']= {
         '--no-sandbox',
         '--disable-dev-shm-usage',
         '--disable-gpu',
-        
+        # '--window-size=1920,1080',
       ],
     }
-# capabilities["version"]= "v91.0.4472.124"
+# capabilities["version"]= "v65.0.3299.6"
 
 
 # driver = webdriver.Chrome(ChromeDriverManager().install())
 driver = webdriver.Remote(
-    command_executor='http://selenium:4444/wd/hub', desired_capabilities=capabilities
+    command_executor='http://localhost:4444/wd/hub', desired_capabilities=capabilities
     )
 
 
@@ -64,9 +66,6 @@ details = {}
 details[name] = {"url":search_url, "jobs":{}}
 
 
-
-
-
 def openOptions(driver):
     try:
         driver.find_element_by_xpath("//button[@aria-label='toggle refine search']").click()
@@ -75,26 +74,17 @@ def openOptions(driver):
         print("check openOptions")
         return True
 
-
-
-
-
-
 def dropDown(driver):
     try:
- 
+        print("test3")
         driver.find_element_by_xpath("//button[@aria-label='Country/Region']").click()
         return True
     except:
         WebDriverWait(driver, timeout = 10).until(openOptions)
 
-
-
-
-
 def setCountry(driver):
     try:
-   
+        print("test2")
         driver.find_element_by_xpath("//label[input/@data-ph-at-text='India']").click()
         return True
     except:
@@ -103,12 +93,8 @@ def setCountry(driver):
         setCountry(driver)
 
 
-
-
-
-
 def checkContent(driver, processLock):
-  
+    print("test1")
     text = driver.find_elements_by_xpath("//ul[@data-ph-at-id='jobs-list']/li")
   
     
@@ -119,7 +105,7 @@ def checkContent(driver, processLock):
         link = header.get_attribute('href')
 
         try:
-       
+            #file.write(title+'\n')
            
             titleCache = title
             i = 1
@@ -129,11 +115,11 @@ def checkContent(driver, processLock):
 
 
             details[name]["jobs"][title]={"url":link}
-          
+            #file.write(link+'\n')
             
             # driver2 = webdriver.Chrome(ChromeDriverManager().install())
             driver2 = webdriver.Remote(
-            command_executor='http://selenium:4444/wd/hub',
+            command_executor='http://localhost:4444/wd/hub',
             desired_capabilities=capabilities
             )
             time.sleep(1)
@@ -164,13 +150,13 @@ def checkContent(driver, processLock):
             return True
         print("writing into file.....")
         driver2.quit()
-
+     
 
 
 
 
     try:
-
+        #global processLock
         # the script for writing into files
         if "processLock" not in locals() and "processLock" not in globals():
             processLock = None
@@ -178,8 +164,10 @@ def checkContent(driver, processLock):
         print(processLock)
         temp = fileWrite(processLock)
         temp.write(details)
-
-        print(colored("done", 0 , 255 , 0))    
+        # jsondata = json.dumps(details, indent=4)
+        # with open("./api_outlet/content.json", 'w', encoding="utf-8") as outfile:
+        #     outfile.write(jsondata)
+        print(colored("done"))    
     except Exception as e:
         print(e)
         exit(1)
