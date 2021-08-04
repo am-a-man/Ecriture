@@ -1,15 +1,10 @@
+from multiprocessing import Lock, Process
+from common.common import colored
 import os
 import sys
 path = sys.path
-path.append("/app/")
-from common.common import colored
-from multiprocessing import Lock, Process
-scripts = os.listdir("/app/calls")
-
-
-
-
-
+path.append("/server/app/")
+scripts = os.listdir("/server/app/calls")
 
 
 def createRunPy():
@@ -24,25 +19,26 @@ from multiprocessing import Lock, Process, Pool
 processLock = Lock()
 import sys
 path = sys.path
-path.append("/app/calls/")
-path.append("/app/common/")
+path.append("/server/app/calls/")
+path.append("/server/app/common/")
 ''')
-        scriptList = os.listdir("/app/calls")
+        scriptList = os.listdir("/server/app/calls")
         for i in scriptList:
             if i != "__pycache__":
-                with open("./app/calls/"+i, 'r',encoding = 'utf-8') as scripts:
-                    runPy.write(f"def scrapeBot_{i.split('.')[0]}(processLock):\n")
+                with open("./server/app/calls/"+i, 'r', encoding='utf-8') as scripts:
+                    runPy.write(
+                        f"def scrapeBot_{i.split('.')[0]}(processLock):\n")
                     for j in scripts.readlines():
                         runPy.write("   "+j+"\n")
                     scripts.close()
-        
+
         runPy.write('''
 
   
 
 def main():
     
-    scriptList = os.listdir("./app/calls")
+    scriptList = os.listdir("./server/app/calls")
     
     processes = []
 
@@ -69,26 +65,22 @@ if __name__ == "__main__" :
 
         ''')
 
-
         runPy.close()
-        
-
 
 
 def printTest():
-    with open("test.py","r",encoding="utf-8") as runPy:
+    with open("test.py", "r", encoding="utf-8") as runPy:
         j = 1
         for i in runPy.readlines():
 
             print(str(j)+" "+i)
-            j+=1
+            j += 1
 
 
-if __name__ == "__main__" :
+if __name__ == "__main__":
 
     createRunPy()
     os.system("python3 test.py")
     os.remove("test.py")
     # printTest()
     exit(0)
-
