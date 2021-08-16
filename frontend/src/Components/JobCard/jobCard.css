@@ -1,0 +1,21 @@
+.jobInfoCol {
+  height: 100%;
+  width: 100%;
+  align-items: center;
+}
+
+.jobInfoCol span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #ff512f;
+}
+
+.jobInfoCol h4 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  color: #706d6e;
+  text-transform: capitalize;
+}

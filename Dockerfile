@@ -9,6 +9,7 @@ RUN pip3 install -r /server/requirements.txt
 FROM node:14-alpine
 COPY --from=0 /  .
 WORKDIR /server/api_outlet
+MKDIR node_modules
 COPY package*.json ./
 RUN npm install
 WORKDIR / 

@@ -1,0 +1,56 @@
+@font-face {
+  font-family: UniNeue-Black;
+  src: url("./TTF/UniNeue-Trial-Black.ttf");
+}
+@font-face {
+  font-family: UniNeue-BlackItalic;
+  src: url("./TTF/UniNeue-Trial-BlackItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Bold;
+  src: url("./TTF/UniNeue-Trial-Bold.ttf");
+}
+@font-face {
+  font-family: UniNeue-BoldItalic;
+  src: url("./TTF/UniNeue-Trial-BoldItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Book;
+  src: url("./TTF/UniNeue-Trial-Book.ttf");
+}
+@font-face {
+  font-family: UniNeue-BookItalic;
+  src: url("./TTF/UniNeue-Trial-BookItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Heavy;
+  src: url("./TTF/UniNeue-Trial-Heavy.ttf");
+}
+@font-face {
+  font-family: UniNeue-HeavyItalic;
+  src: url("./TTF/UniNeue-Trial-HeavyItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Light;
+  src: url("./TTF/UniNeue-Trial-Light.ttf");
+}
+@font-face {
+  font-family: UniNeue-LightItalic;
+  src: url("./TTF/UniNeue-Trial-LightItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Regular;
+  src: url("./TTF/UniNeue-Trial-Regular.ttf");
+}
+@font-face {
+  font-family: UniNeue-RegularItalic;
+  src: url("./TTF/UniNeue-Trial-RegularItalic.ttf");
+}
+@font-face {
+  font-family: UniNeue-Thin;
+  src: url("./TTF/UniNeue-Trial-Thin.ttf");
+}
+@font-face {
+  font-family: UniNeue-ThinItalic;
+  src: url("./TTF/UniNeue-Trial-ThinItalic.ttf");
+}
